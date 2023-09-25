@@ -1,0 +1,37 @@
+    server setup
+- creating /server and initiating node inside
+cd server
+npm init
+- installing websockets package 
+npm i ws
+- changing start scripts in package.json to "node ."
+- creating server/index.js
+
+    front-end setup
+- creating app/index.html (defer in script means to download JS after everything else)
+- creating app/app.js
+
+    testing
+- starting server and front end
+npm start
+- Server logs out a buffer, so in order to read it we need some changes in server/index.js
+
+    Enabling ECMAS instead of CommonJS
+- changing package.json, adding type
+
+    SocketIO Server
+- adding dependencies to the server (NOTE make sure console is in the server directory)
+(we can use builtin --watch command)
+// npm i -D nodemon
+npm i socket.io
+- uninstalling ws, since we're using socket.io now
+npm uninstall ws
+- adding dev run script in package.json
+- changing server/index.js
+
+    SocketIO Client
+- adding a library (https://cdnjs.com/libraries/socket.io) Copying a script tag for socket.io.min.js and adding to the app/index.html (NOTE It has to go bwfore script tag for the app)
+- changing app.js
+
+    Testing
+- starting server and front-end

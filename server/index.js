@@ -1,9 +1,25 @@
-import { createServer } from "http";
+import express from "express";
 import { Server } from "socket.io";
+import path from "path";
+import { fileURLToPath } from "url";
 
-const httpServer = createServer();
+// adding __filename and __dirname variables since they are not pre-defined in ES6
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
-const io = new Server(httpServer, {
+const PORT = process.env.PORT || 3500;
+
+// declaring express
+const app = express();
+
+app.use(express.static(path.join(__dirname, "public")));
+
+const expressServer = app.listen(PORT, () => {
+  console.log(`Listening on port: ${PORT}`);
+});
+
+const io = new Server(expressServer, {
+  // with server and front-end on the same address we don't need to define cors
   cors: {
     origin:
       process.env.NODE_ENV === "production"
@@ -19,5 +35,3 @@ io.on("connection", (socket) => {
     io.emit("message", `${socket.id.substring(0, 5)}: ${data}`);
   });
 });
-
-httpServer.listen(3500, () => console.log("listenign on port 3500"));

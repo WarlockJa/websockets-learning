@@ -35,3 +35,10 @@ npm uninstall ws
 
     Testing
 - starting server and front-end
+
+    Adding Express
+- adding dependencies to the server (NOTE make sure console is in the server directory)
+npm i express
+- adding express to the server/index.js
+- moving app contents inside of the server directory. In this setup front-end and back-end are combined
+- testing using two browsers

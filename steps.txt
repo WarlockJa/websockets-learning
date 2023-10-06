@@ -42,3 +42,11 @@ npm i express
 - adding express to the server/index.js
 - moving app contents inside of the server directory. In this setup front-end and back-end are combined
 - testing using two browsers
+
+    Adding activity detection
+- adding <p> element with activity class to index.html
+- adding selectors and input keypress listeners to the app.js
+- adding socket.on('activity') in the index.js 
+- adding connect/disconnect, hello events
+- adding listener for the activity user from the server to the app.js
+- adding timeout on typing activity

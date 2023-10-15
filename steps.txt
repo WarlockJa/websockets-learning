@@ -50,3 +50,9 @@ npm i express
 - adding connect/disconnect, hello events
 - adding listener for the activity user from the server to the app.js
 - adding timeout on typing activity
+
+    Creating Chat app
+- adding to index.html
+- adding to style.css
+- adding to app.js
+- adding to index.js

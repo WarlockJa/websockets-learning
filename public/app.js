@@ -1,5 +1,5 @@
 // const socket = io(`ws://localhost:3500`);
-const socket = io(`ws://websockets-learning.vercel.app`);
+const socket = io(`https://websockets-learning.vercel.app`);
 
 const msgInput = document.querySelector("#message");
 const nameInput = document.querySelector("#name");

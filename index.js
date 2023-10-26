@@ -36,7 +36,7 @@ const UsersState = {
 };
 
 // TEST
-const io = new Server(httpsServer);
+const io = new Server(httpsServer, app);
 // const io = new Server(expressServer, {
 //   // with server and front-end on the same address we don't need to define cors
 //   cors: {

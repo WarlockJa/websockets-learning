@@ -56,3 +56,9 @@ npm i express
 - adding to style.css
 - adding to app.js
 - adding to index.js
+
+    Adding https
+- generating certificates
+openssl genrsa 1024 > key.pem
+openssl req -new -key file.pem -out csr.pem
+openssl x509 -req -days 365 -in csr.pem -signkey file.pem -out file.crt

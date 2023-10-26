@@ -2,6 +2,7 @@ import express from "express";
 import { Server } from "socket.io";
 import path from "path";
 import { fileURLToPath } from "url";
+import "dotenv/config";
 
 // adding __filename and __dirname variables since they are not pre-defined in ES6
 const __filename = fileURLToPath(import.meta.url);

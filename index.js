@@ -3,7 +3,8 @@ import { Server } from "socket.io";
 import path from "path";
 import { fileURLToPath } from "url";
 import "dotenv/config";
-import { createServer } from "https";
+// import { createServer } from "https";
+// import { readFileSync } from "fs";
 
 // adding __filename and __dirname variables since they are not pre-defined in ES6
 const __filename = fileURLToPath(import.meta.url);
@@ -17,11 +18,12 @@ const app = express();
 
 app.use(express.static(path.join(__dirname, "public")));
 
-// TEST
-const httpsServer = createServer({
-  key: Buffer.from(process.env.APP_FILE_PEM, "base64").toString("ascii"),
-  cert: Buffer.from(process.env.APP_FILE_CRT, "base64").toString("ascii"),
-});
+// const httpsServer = createServer({
+//   key: readFileSync("./file.pem"),
+//   cert: readFileSync("./file.crt"),
+//   // key: Buffer.from(process.env.APP_FILE_PEM, "base64").toString("ascii"),
+//   // cert: Buffer.from(process.env.APP_FILE_CRT, "base64").toString("ascii"),
+// });
 
 const expressServer = app.listen(PORT, () => {
   console.log(`Listening on port: ${PORT}`);
@@ -36,16 +38,16 @@ const UsersState = {
 };
 
 // TEST
-const io = new Server(httpsServer, app);
-// const io = new Server(expressServer, {
-//   // with server and front-end on the same address we don't need to define cors
-//   cors: {
-//     origin:
-//       process.env.NODE_ENV === "production"
-//         ? false
-//         : ["http://localhost:5500", "http://127.0.0.1:5500"],
-//   },
-// });
+// const io = new Server(httpsServer);
+const io = new Server(expressServer, {
+  // with server and front-end on the same address we don't need to define cors
+  cors: {
+    origin:
+      process.env.NODE_ENV === "production"
+        ? false
+        : ["http://localhost:5500", "http://127.0.0.1:5500"],
+  },
+});
 
 io.on("connection", (socket) => {
   console.log(`User ${socket.id} connected`);
@@ -194,4 +196,4 @@ function getAllActiveRooms() {
 }
 
 // TEST
-httpsServer.listen(PORT);
+// httpsServer.listen(PORT);
